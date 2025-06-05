@@ -200,6 +200,11 @@ def sortear_desafio():
         if resposta_usuario.lower() in [resp.lower() for resp in formas_corretas]:
             acertou = True
             print("\n✅ Correto! Parabéns!")
+            outras_respostas = [
+                resp for resp in formas_corretas if resp.lower() != resposta_usuario.lower()]
+            if outras_respostas:
+                print(
+                    f"Outras respostas possíveis: {', '.join(outras_respostas)}")
         else:
             print(
                 f"\n❌ Incorreto. A resposta correta seria: {formas_corretas[0]}")
