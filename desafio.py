@@ -2,6 +2,7 @@ import csv
 import random
 from enum import Enum, auto
 
+
 class Pessoa(Enum):
     I = "I"
     YOU = "you"
@@ -10,6 +11,7 @@ class Pessoa(Enum):
     IT = "it"
     WE = "we"
     THEY = "they"
+
 
 class TempoVerbal(Enum):
     PRESENT_SIMPLE = auto()
@@ -22,6 +24,7 @@ class TempoVerbal(Enum):
     FUTURE_BE_GOING_TO = auto()
     FUTURE_CONTINUOUS = auto()
     CONDITIONAL_SIMPLE = auto()
+
 
 class Conjugador:
     @staticmethod
@@ -137,14 +140,16 @@ class Conjugador:
         }
         return nomes.get(tempo, "")
 
+
 def carregar_verbos(caminho_csv):
     with open(caminho_csv, mode='r', encoding='utf-8') as arquivo:
         return list(csv.DictReader(arquivo, delimiter=';'))
 
+
 def sortear_desafio():
     verbos = carregar_verbos('verbos.csv')
     conjugador = Conjugador()
-    
+
     pessoa = random.choice(list(Pessoa))
     verbo = random.choice(verbos)
 
@@ -160,9 +165,10 @@ def sortear_desafio():
         TempoVerbal.PAST_SIMPLE: 3,
         TempoVerbal.PRESENT_PERFECT: 3
     }
-    
-    tempo = random.choices(list(TempoVerbal), weights=[pesos_tempos[t] for t in TempoVerbal], k=1)[0]
-    
+
+    tempo = random.choices(list(TempoVerbal), weights=[
+                           pesos_tempos[t] for t in TempoVerbal], k=1)[0]
+
     if tempo == TempoVerbal.PRESENT_SIMPLE and pessoa in [Pessoa.HE, Pessoa.SHE, Pessoa.IT]:
         forma_verbal = verbo["PRESENT_3RD"]
         auxiliar = ""
@@ -174,34 +180,42 @@ def sortear_desafio():
     print(f"Pessoa       : {pessoa.value}")
     print(f"Verbo        : {verbo['BASE_FORM']}")
     print(f"Tempo verbal : {conjugador.get_nome_tempo(tempo)}")
-    
-    resposta_correta = f"{pessoa.value} {auxiliar} {forma_verbal}".replace("  ", " ").strip()
-    
+
+    resposta_correta = f"{pessoa.value} {auxiliar} {forma_verbal}".replace(
+        "  ", " ").strip()
+
     if "/" in forma_verbal:
         alternativas = forma_verbal.split("/")
-        formas_corretas = [f"{pessoa.value} {auxiliar} {alt}".replace("  ", " ").strip() 
-                          for alt in alternativas]
+        formas_corretas = [f"{pessoa.value} {auxiliar} {alt}".replace("  ", " ").strip()
+                           for alt in alternativas]
     else:
         formas_corretas = [resposta_correta]
 
-    resposta_usuario = input("\nSua resposta: ").strip()
-    
-    if resposta_usuario.lower() in [resp.lower() for resp in formas_corretas]:
-        print("\n✅ Correto! Parabéns!")
-    else:
-        print(f"\n❌ Incorreto. A resposta correta seria: {formas_corretas[0]}")
-        if len(formas_corretas) > 1:
-            print(f"   (Ou também: {', '.join(formas_corretas[1:])})")
+    acertou = False
+
+    while not acertou:
+
+        resposta_usuario = input("\nSua resposta: ").strip()
+
+        if resposta_usuario.lower() in [resp.lower() for resp in formas_corretas]:
+            acertou = True
+            print("\n✅ Correto! Parabéns!")
+        else:
+            print(
+                f"\n❌ Incorreto. A resposta correta seria: {formas_corretas[0]}")
+            if len(formas_corretas) > 1:
+                print(f"   (Ou também: {', '.join(formas_corretas[1:])})")
 
     print("\nPressione Enter para continuar ou digite 'sair' para terminar")
     return input().strip().lower() != 'sair'
 
+
 if __name__ == "__main__":
     print("=== Desafio de Verbos Irregulares em Inglês ===")
     print("Para sair, digite 'sair' quando solicitado\n")
-    
+
     continuar = True
     while continuar:
         continuar = sortear_desafio()
-    
+
     print("\nAté a próxima! Pratique verbos irregulares regularmente!")
