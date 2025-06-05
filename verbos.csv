@@ -27,6 +27,7 @@ creep;creeps;creeping;crept;crept
 cut;cuts;cutting;cut;cut
 deal;deals;dealing;dealt;dealt
 dig;digs;digging;dug;dug
+dive;dives;diving;dove;dived
 do;does;doing;did;done
 draw;draws;drawing;drew;drawn
 drink;drinks;drinking;drank;drunk
@@ -37,6 +38,7 @@ feed;feeds;feeding;fed;fed
 feel;feels;feeling;felt;felt
 fight;fights;fighting;fought;fought
 find;finds;finding;found;found
+fit;fits;fitting;fit;fit
 fly;flies;flying;flew;flown
 forbid;forbids;forbidding;forbade;forbidden
 forget;forgets;forgetting;forgot;forgotten
@@ -55,10 +57,11 @@ hit;hits;hitting;hit;hit
 hold;holds;holding;held;held
 hurt;hurts;hurting;hurt;hurt
 keep;keeps;keeping;kept;kept
-kneel;kneels;kneeling;knelt;knelt
+kneel;kneels;kneeling;knelt/kneeled;knelt/kneeled
 know;knows;knowing;knew;known
 lay;lays;laying;laid;laid
 lead;leads;leading;led;led
+leap;leaps;leaping;leaped/leapt;leaped/leapt
 leave;leaves;leaving;left;left
 lend;lends;lending;lent;lent
 lie (in bed);lies;lying;lay;lain
@@ -71,7 +74,9 @@ meet;meets;meeting;met;met
 mow;mows;mowing;mowed;mown/mowed
 overtake;overtakes;overtaking;overtook;overtaken
 pay;pays;paying;paid;paid
+plead;pleads;pleading;pled;pled
 put;puts;putting;put;put
+quit;quits;quitting;quit;quit
 read;reads;reading;read;read
 ride;rides;riding;rode;ridden
 ring;rings;ringing;rang;rung
@@ -123,6 +128,7 @@ understand;understands;understanding;understood;understood
 wake;wakes;waking;woke;woken
 wear;wears;wearing;wore;worn
 weep;weeps;weeping;wept;wept
+wet;wets;wetting;wet;wet
 win;wins;winning;won;won
 wind;winds;winding;wound;wound
 write;writes;writing;wrote;written
