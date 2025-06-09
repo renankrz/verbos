@@ -236,7 +236,7 @@ def sortear_desafio(pesos_pronomes, pesos_tipo_sentenca, pesos_polaridade_senten
 
     print()
     print(f"Pessoa                  : {pronome.value}")
-    print(f"Verbo                   : {verbo['BASE_FORM']}")
+    print(f"Verbo                   : {verbo['BASE_FORM'][0].upper() + verbo['BASE_FORM'][1:]}")
     print(f"Tempo verbal            : {conjugador.get_nome_tempo(tempo)}")
     print(f"Tipo de sentença        : {tipo.value}")
     print(f"Polaridade de sentença  : {polaridade.value}")
