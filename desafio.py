@@ -216,6 +216,12 @@ def carregar_verbos(caminho_csv):
         return list(csv.DictReader(arquivo, delimiter=';'))
 
 
+def normalizar_resposta(resposta):
+    if not resposta.startswith("i ") and not resposta.startswith("i'"):
+        return resposta[0].upper() + resposta[1:]
+    return resposta
+
+
 def sortear_desafio(pesos_pronomes, pesos_tipo_sentenca, pesos_polaridade_sentenca, pesos_tempos):
     verbos = carregar_verbos('verbos.csv')
     conjugador = Conjugador()
@@ -246,10 +252,10 @@ def sortear_desafio(pesos_pronomes, pesos_tipo_sentenca, pesos_polaridade_senten
     while not acertou:
         resposta_usuario = input("\n> ").strip()
 
-        if resposta_usuario in [resp for resp in respostas]:
+        if normalizar_resposta(resposta_usuario) in [resp for resp in respostas]:
             acertou = True
             print("\n✅ Correto")
-            outras_respostas = [resp for resp in respostas if resp != resposta_usuario]
+            outras_respostas = [resp for resp in respostas if resp != normalizar_resposta(resposta_usuario)]
             if outras_respostas:
                 print(f"Outras respostas corretas: {', '.join(outras_respostas)}")
         else:
