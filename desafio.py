@@ -216,30 +216,14 @@ def carregar_verbos(caminho_csv):
         return list(csv.DictReader(arquivo, delimiter=';'))
 
 
-def sortear_desafio():
+def sortear_desafio(pesos_pronomes, pesos_tipo_sentenca, pesos_polaridade_sentenca, pesos_tempos):
     verbos = carregar_verbos('verbos.csv')
     conjugador = Conjugador()
 
-    pronome = random.choice(list(Pronome))
-    tipo = random.choice(list(TipoDaSentenca))
-    polaridade = random.choice(list(PolaridadeDaSentenca))
-
-    pesos_tempos = {
-        TempoVerbal.PRESENT_SIMPLE: 1,
-        TempoVerbal.FUTURE_SIMPLE: 1,
-        TempoVerbal.FUTURE_BE_GOING_TO: 1,
-        TempoVerbal.CONDITIONAL_SIMPLE: 1,
-        TempoVerbal.PRESENT_CONTINUOUS: 1,
-        TempoVerbal.PAST_CONTINUOUS: 1,
-        TempoVerbal.PRESENT_PERFECT_CONTINUOUS: 1,
-        TempoVerbal.FUTURE_CONTINUOUS: 1,
-        TempoVerbal.PAST_SIMPLE: 3,
-        TempoVerbal.PRESENT_PERFECT: 3
-    }
-
-    tempo = random.choices(list(TempoVerbal), weights=[
-                           pesos_tempos[t] for t in TempoVerbal], k=1)[0]
-
+    pronome = random.choices(list(Pronome), weights=[pesos_pronomes[p] for p in Pronome], k=1)[0]
+    tipo = random.choices(list(TipoDaSentenca), weights=[pesos_tipo_sentenca[t] for t in TipoDaSentenca], k=1)[0]
+    polaridade = random.choices(list(PolaridadeDaSentenca), weights=[pesos_polaridade_sentenca[p] for p in PolaridadeDaSentenca], k=1)[0]
+    tempo = random.choices(list(TempoVerbal), weights=[pesos_tempos[t] for t in TempoVerbal], k=1)[0]
     verbo = random.choice(verbos)
 
     bases = conjugador.get_bases(pronome, tipo, polaridade, tempo)
@@ -278,8 +262,41 @@ if __name__ == "__main__":
     print("=== Verbos Irregulares ===")
     print("Para sair, digite 'sair' quando solicitado")
 
+    pesos_pronomes = {
+        Pronome.I: 1,
+        Pronome.YOU: 1,
+        Pronome.HE: 1,
+        Pronome.SHE: 1,
+        Pronome.IT: 1,
+        Pronome.WE: 1,
+        Pronome.THEY: 1
+    }
+
+    pesos_tipo_sentenca = {
+        TipoDaSentenca.AFIRMATIVA: 2,
+        TipoDaSentenca.INTERROGATIVA: 1
+    }
+
+    pesos_polaridade_sentenca = {
+        PolaridadeDaSentenca.POSITIVA: 2,
+        PolaridadeDaSentenca.NEGATIVA: 1
+    }
+
+    pesos_tempos = {
+        TempoVerbal.PRESENT_SIMPLE: 1,
+        TempoVerbal.FUTURE_SIMPLE: 1,
+        TempoVerbal.FUTURE_BE_GOING_TO: 1,
+        TempoVerbal.CONDITIONAL_SIMPLE: 1,
+        TempoVerbal.PRESENT_CONTINUOUS: 1,
+        TempoVerbal.PAST_CONTINUOUS: 1,
+        TempoVerbal.PRESENT_PERFECT_CONTINUOUS: 1,
+        TempoVerbal.FUTURE_CONTINUOUS: 1,
+        TempoVerbal.PAST_SIMPLE: 3,
+        TempoVerbal.PRESENT_PERFECT: 3
+    }
+
     continuar = True
     while continuar:
-        continuar = sortear_desafio()
+        continuar = sortear_desafio(pesos_pronomes, pesos_tipo_sentenca, pesos_polaridade_sentenca, pesos_tempos)
 
     print("\nAté a próxima! Pratique verbos irregulares regularmente!")
