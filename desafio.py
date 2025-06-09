@@ -273,12 +273,12 @@ if __name__ == "__main__":
     }
 
     pesos_tipo_sentenca = {
-        TipoDaSentenca.AFIRMATIVA: 2,
+        TipoDaSentenca.AFIRMATIVA: 3,
         TipoDaSentenca.INTERROGATIVA: 1
     }
 
     pesos_polaridade_sentenca = {
-        PolaridadeDaSentenca.POSITIVA: 2,
+        PolaridadeDaSentenca.POSITIVA: 3,
         PolaridadeDaSentenca.NEGATIVA: 1
     }
 
@@ -291,7 +291,7 @@ if __name__ == "__main__":
         TempoVerbal.PAST_CONTINUOUS: 1,
         TempoVerbal.PRESENT_PERFECT_CONTINUOUS: 1,
         TempoVerbal.FUTURE_CONTINUOUS: 1,
-        TempoVerbal.PAST_SIMPLE: 3,
+        TempoVerbal.PAST_SIMPLE: 5,
         TempoVerbal.PRESENT_PERFECT: 3
     }
 
