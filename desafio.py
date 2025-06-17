@@ -1,5 +1,6 @@
 import csv
 import random
+import readline
 from enum import Enum, auto
 
 
